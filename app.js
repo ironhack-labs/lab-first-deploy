@@ -10,7 +10,8 @@ const mongoose       = require("mongoose");
 const app            = express();
 
 // Controllers
-const siteController = require("./routes/siteController");
+const siteController     = require("./routes/siteController");
+const locationController = require("./routes/locationController");
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/deploy-exercise");
@@ -42,6 +43,7 @@ app.use(cookieParser());
 
 // Routes
 app.use("/", siteController);
+app.use("/locations", locationController);
 
 // Error handlers
 // Catch 404 and forward to error handler
