@@ -2,6 +2,13 @@ const express            = require("express");
 const locationController = express.Router();
 const Location           = require("../models/locations");
 
+locationController.get("/", (req, res, next) => {
+  Location.find().sort({ created_at: -1 }).exec((err, locations) => {
+    if (err) { console.error(err); }
+    else { res.render("locations/show", { locations }); }
+  });
+});
+
 locationController.post("/create", (req, res, next) => {
   let place = {
     type: "Point",
