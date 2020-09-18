@@ -14,7 +14,9 @@ const siteController     = require("./routes/siteController");
 const locationController = require("./routes/locationController");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/deploy-exercise");
+mongoose.connect("mongodb://localhost/deploy-exercise")
+  .then(() => console.log(`⚡️ connected to mongoDB`))
+  .catch(err => console.error(`💥 unable to connect to mongoDB`, err));
 
 // Middlewares configuration
 app.use(logger("dev"));
